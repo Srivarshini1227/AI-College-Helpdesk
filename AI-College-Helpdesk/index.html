@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="AI College Helpdesk: a rule-based demo for campus FAQs, notices and events.">
+  <title>AI College Helpdesk</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="#home" aria-label="AI College Helpdesk home">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg>
+        <span>AI College Helpdesk</span>
+      </a>
+      <nav id="mainNav" class="main-nav" aria-label="Main navigation">
+        <a href="#home">Home</a>
+        <a href="#ask">Ask AI</a>
+        <a href="#faqs">FAQs</a>
+        <a href="#notices">Notices</a>
+        <a href="#events">Events</a>
+        <a href="#about">About</a>
+        <a href="#admin">Admin</a>
+      </nav>
+      <div class="nav-actions">
+        <button id="themeToggle" class="icon-btn" type="button" aria-label="Toggle light and dark theme">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        </button>
+        <button id="menuToggle" class="icon-btn menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mainNav">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section id="home" class="hero">
+      <div class="container">
+        <p class="eyebrow">Demo project · Sample data only</p>
+        <h1>Your Campus Questions, <span class="grad">Answered.</span></h1>
+        <p class="subtitle">Find college information, explore notices, and get help in seconds.</p>
+        <form id="heroSearchForm" class="search-bar" role="search">
+          <label for="heroSearchInput" class="sr-only">Search FAQs, notices and events</label>
+          <input id="heroSearchInput" type="search" placeholder="Search FAQs, notices, events…" autocomplete="off">
+          <button class="btn btn-primary" type="submit">Search</button>
+        </form>
+        <a id="askBtn" class="btn btn-ghost" href="#ask">Ask the Assistant</a>
+      </div>
+    </section>
+
+    <section class="container section" aria-labelledby="quickTitle">
+      <h2 id="quickTitle">Quick Access</h2>
+      <div id="quickCards" class="grid grid-3"></div>
+    </section>
+
+    <section class="container section two-col">
+      <div>
+        <h2>Recent Notices <span class="badge badge-demo">Sample</span></h2>
+        <div id="homeNotices" class="stack"></div>
+      </div>
+      <div>
+        <h2>Popular Questions</h2>
+        <div id="popularQuestions" class="stack"></div>
+      </div>
+    </section>
+
+    <section id="ask" class="container section">
+      <h2>Ask the Assistant</h2>
+      <p class="note-box">This is a <strong>rule-based demo chatbot</strong>, not a real AI or LLM. It matches your question against a local FAQ dataset and never invents college rules, fees, contacts or dates.</p>
+      <div class="chat-card">
+        <div class="chat-head">
+          <strong>Helpdesk Assistant</strong>
+          <button id="clearChat" class="btn btn-ghost btn-sm" type="button">Clear chat</button>
+        </div>
+        <div id="chatLog" class="chat-log" role="log" aria-live="polite"></div>
+        <div id="suggestions" class="chip-row"></div>
+        <form id="chatForm" class="chat-form">
+          <label for="chatInput" class="sr-only">Type your question</label>
+          <input id="chatInput" type="text" placeholder="Type your question…" autocomplete="off" maxlength="300">
+          <button class="btn btn-primary" type="submit">Send</button>
+        </form>
+      </div>
+    </section>
+
+    <section id="faqs" class="container section">
+      <h2>Frequently Asked Questions <span class="badge badge-demo">Sample</span></h2>
+      <div class="toolbar">
+        <label for="faqSearch" class="sr-only">Search FAQs</label>
+        <input id="faqSearch" type="search" placeholder="Search FAQs…">
+        <div id="faqFilters" class="chip-row" role="group" aria-label="FAQ categories"></div>
+      </div>
+      <div id="faqList" class="stack"></div>
+    </section>
+
+    <section id="notices" class="container section">
+      <h2>Notices <span class="badge badge-demo">Demo content, not official</span></h2>
+      <div class="toolbar">
+        <label for="noticeSearch" class="sr-only">Search notices</label>
+        <input id="noticeSearch" type="search" placeholder="Search notices…">
+        <div id="noticeFilters" class="chip-row" role="group" aria-label="Notice categories"></div>
+      </div>
+      <div id="noticeList" class="grid grid-3"></div>
+    </section>
+
+    <section id="events" class="container section">
+      <h2>Upcoming Events <span class="badge badge-demo">Sample events</span></h2>
+      <div class="toolbar">
+        <label for="eventSearch" class="sr-only">Search events</label>
+        <input id="eventSearch" type="search" placeholder="Search events…">
+        <div id="eventFilters" class="chip-row" role="group" aria-label="Event categories"></div>
+      </div>
+      <div id="eventList" class="grid grid-3"></div>
+    </section>
+
+    <section id="about" class="container section">
+      <h2>About This Project</h2>
+      <div class="card prose">
+        <p>AI College Helpdesk is a portfolio project built with plain HTML, CSS and vanilla JavaScript. It runs in the browser with no backend, database or paid API.</p>
+        <ul>
+          <li>The chatbot is <strong>rule-based keyword matching</strong> over a local FAQ dataset.</li>
+          <li>All notices, events, FAQs and contacts are <strong>sample data</strong> and should be replaced with verified information.</li>
+          <li>The answer logic is isolated in one provider object so a real AI API and retrieval-augmented generation (RAG) backend can be added later.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="admin" class="container section">
+      <h2>Admin Demo Panel</h2>
+      <div class="warning-box" role="alert"><strong>Security warning:</strong> this admin panel is a frontend demo only. It has no secure authentication and must not be used to manage real official college data without a backend and proper authorization.</div>
+      <div id="adminStats" class="grid grid-3"></div>
+      <div class="toolbar">
+        <label for="adminSearch" class="sr-only">Search records</label>
+        <input id="adminSearch" type="search" placeholder="Search all records…">
+        <button id="resetData" class="btn btn-ghost btn-sm" type="button">Reset demo data</button>
+      </div>
+
+      <div class="admin-grid">
+        <div class="card">
+          <h3>FAQs</h3>
+          <form id="faqForm" novalidate>
+            <input type="hidden" id="faqId">
+            <label for="faqQuestion">Question</label>
+            <input id="faqQuestion" type="text" required>
+            <label for="faqCategory">Category</label>
+            <select id="faqCategory" required></select>
+            <label for="faqAnswer">Answer</label>
+            <textarea id="faqAnswer" rows="3" required></textarea>
+            <label for="faqSource">Source title (optional)</label>
+            <input id="faqSource" type="text">
+            <p id="faqError" class="form-error" role="alert"></p>
+            <div class="form-actions">
+              <button class="btn btn-primary btn-sm" type="submit" id="faqSubmit">Add FAQ</button>
+              <button class="btn btn-ghost btn-sm" type="button" id="faqCancel" hidden>Cancel edit</button>
+            </div>
+          </form>
+          <div id="adminFaqList" class="admin-list"></div>
+        </div>
+
+        <div class="card">
+          <h3>Notices</h3>
+          <form id="noticeForm" novalidate>
+            <input type="hidden" id="noticeId">
+            <label for="noticeTitle">Title</label>
+            <input id="noticeTitle" type="text" required>
+            <label for="noticeCategory">Category</label>
+            <select id="noticeCategory" required></select>
+            <label for="noticeDate">Publication date</label>
+            <input id="noticeDate" type="date" required>
+            <label for="noticeDesc">Description</label>
+            <textarea id="noticeDesc" rows="3" required></textarea>
+            <p id="noticeError" class="form-error" role="alert"></p>
+            <div class="form-actions">
+              <button class="btn btn-primary btn-sm" type="submit" id="noticeSubmit">Add notice</button>
+              <button class="btn btn-ghost btn-sm" type="button" id="noticeCancel" hidden>Cancel edit</button>
+            </div>
+          </form>
+          <div id="adminNoticeList" class="admin-list"></div>
+        </div>
+
+        <div class="card">
+          <h3>Events</h3>
+          <form id="eventForm" novalidate>
+            <label for="eventTitle">Title</label>
+            <input id="eventTitle" type="text" required>
+            <label for="eventCategory">Category</label>
+            <select id="eventCategory" required></select>
+            <label for="eventDate">Date</label>
+            <input id="eventDate" type="date" required>
+            <label for="eventDesc">Description</label>
+            <textarea id="eventDesc" rows="3" required></textarea>
+            <p id="eventError" class="form-error" role="alert"></p>
+            <div class="form-actions">
+              <button class="btn btn-primary btn-sm" type="submit">Add event</button>
+            </div>
+          </form>
+          <div id="adminEventList" class="admin-list"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p><strong>Contact (sample data, not real):</strong> helpdesk@example.edu · +00 000 000 0000 · Sample Campus, Example City</p>
+      <p class="muted">Demo project. Not affiliated with any real institution.</p>
+    </div>
+  </footer>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
